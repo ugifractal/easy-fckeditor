@@ -3,9 +3,9 @@ require 'tmpdir'
 
 class FckeditorController < ActionController::Base
 
-  UPLOAD_FOLDER = "/uploads"
+  UPLOAD_FOLDER = "uploads"
 
-  UPLOADED_ROOT = Rails.root + "/public" + UPLOAD_FOLDER
+  UPLOADED_ROOT = Rails.root + "public" + UPLOAD_FOLDER
 
   MIME_TYPES = [
     "image/jpg",
@@ -195,7 +195,7 @@ class FckeditorController < ActionController::Base
   # Returns the upload url folder with the current folder
   #
   def upload_directory_path
-    url_root = ActionController::Base.relative_url_root.to_s
+    url_root = "" #ActionController::Base.relative_url_root.to_s
     uploaded = url_root + "#{UPLOAD_FOLDER}/#{params[:Type]}"
     "#{uploaded}#{params[:CurrentFolder]}"
   end
@@ -222,7 +222,7 @@ class FckeditorController < ActionController::Base
 
   def check_path(path)
     exp_path = File.expand_path path
-    if exp_path !~ %r[^#{File.expand_path(Rails.root)}/public#{UPLOAD_FOLDER}]
+    if exp_path !~ %r[^#{File.expand_path(Rails.root)}/public/#{UPLOAD_FOLDER}]
       @errorNumber = 403
       throw Exception.new
     end
