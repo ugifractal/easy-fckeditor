@@ -5,7 +5,7 @@
 
 namespace :fckeditor do
   def setup
-    require "config/environment"
+    require "#{Rails.root}/config/environment"
     require 'fileutils'
 
     directory = File.join(Rails.root, '/vendor/plugins/easy-fckeditor/')
